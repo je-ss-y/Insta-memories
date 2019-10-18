@@ -1,13 +1,16 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
-
+from .models import Image
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def posts_of_day(request):
     date = dt.date.today()
-    return render(request, 'all-posts/posts-today.html', {"date": date,})
+    image = Image.objects.all()
+    return render(request, 'all-posts/posts-today.html', {"date": date,"image": image})
 
 
 
