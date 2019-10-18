@@ -3,7 +3,7 @@ from django.http  import HttpResponse,Http404
 import datetime as dt
 from .models import Image
 from django.contrib.auth.decorators import login_required
-from .forms import NewImageForm
+from .forms import NewImageForm,ProfileForm
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
