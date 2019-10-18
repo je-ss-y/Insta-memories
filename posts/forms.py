@@ -16,13 +16,13 @@ class NewImageForm(forms.ModelForm):
 
 
 
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ['editor', 'pub_date']
-        # widgets = {
-        #     'tags': forms.CheckboxSelectMultiple(),
-        # }
-        user = models.OneToOneField(User,on_delete=models.CASCADE)
-        bio = models.TextField()
-        profilepicture= models.ImageField(upload_to='images/', blank=True)
+# class ProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         exclude = ['editor', 'pub_date']
+#         # widgets = {
+#         #     'tags': forms.CheckboxSelectMultiple(),
+#         # }
+#         user = models.OneToOneField(User,on_delete=models.CASCADE)
+#         bio = models.TextField()
+#         profilepicture= models.ImageField(upload_to='images/', blank=True)
