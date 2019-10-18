@@ -9,6 +9,8 @@ class Image(models.Model):
     photoname = models.TextField()
     caption = models.TextField()
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    
     # tags = models.ManyToManyField(tags)
 
 
