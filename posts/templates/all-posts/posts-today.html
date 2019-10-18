@@ -7,8 +7,13 @@
 <!--Display  images  -->
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <img src="{{image_item.image.url}}" class="img-responsive" alt="Image">
+    <p>{{image_item.caption}}</p>
+    <p>{{image_item.photoname}}</p>
+    <p>{{image_item.user}}</p>
+    <p>Posted {{image_item.pub_date|timesince}} ago </p>
   </div>
 
 </div>
+
 {%endfor%}
 {% endblock %}

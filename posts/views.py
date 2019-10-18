@@ -3,8 +3,22 @@ from django.http  import HttpResponse,Http404
 import datetime as dt
 from .models import Image
 from django.contrib.auth.decorators import login_required
+from .forms import NewImageForm
 
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.user = current_user
+            article.save()
+        return redirect('postsToday')
 
+    else:
+        form =NewImageForm()
+    return render(request, 'all-posts/onepost.html', {"form": form})
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def posts_of_day(request):
