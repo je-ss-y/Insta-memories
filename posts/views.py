@@ -65,7 +65,8 @@ def profile_form(request):
 
 @login_required(login_url='/accounts/login/')
 def user_profile(request):
-    profilepicture = request.user.profile
+    profilepicture=Profile.objects.all()
+    args={"profilepicture":profilepicture}
     return render(request, 'all-posts/profiledisplay.html', {"profilepicture": profilepicture})
 
 

@@ -3,15 +3,23 @@
 {% block content %}
 {{block.super}}
 
-{% for image_item in image %}
+{% for profile in profilepicture %}
 <!--Display  images  -->
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <img src="{{image_item.image.url}}" class="img-responsive" alt="Image">
-    <p>{{image_item.user}}</p>
-    <p>{{image_item.bio}}</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-4">
+          <div class="jumbotron" style="background-color: transparent;padding:12px">
+              <div class="card"  class="rounded-lg" style="width:500px">
+    <img src="{{profile.image.url}}" class="img-responsive" alt="Image">
+    <p>{{profile.user}}</p>
+    <p>{{profile.bio}}</p>
   </div>
-
 </div>
+</div>
+</div>
+</div>
+
+
 
 {%endfor%}
 {% endblock %}

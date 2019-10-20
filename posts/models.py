@@ -28,7 +28,12 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     bio = models.TextField()
-    profilepicture= models.ImageField(upload_to='images/', blank=True)
+    profilepicture= models.ImageField(upload_to='profile/', blank=True)
+
+
+    def __str__(self):
+        return self.bio
+
 
 
 
