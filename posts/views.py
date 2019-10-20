@@ -4,6 +4,7 @@ import datetime as dt
 from .models import Image,Profile
 from django.contrib.auth.decorators import login_required
 from .forms import NewImageForm,ProfileForm
+from django.contrib.auth.forms import UserCreationForm
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -82,3 +83,16 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'all-posts/search.html',{"message":message})
 
+
+def register(request):
+    
+    if request.method == 'POST':
+        form =  UserCreationForm(request.POST)
+        if form.is_valid():
+           form.save()
+        return redirect('all-posts/posts-today')
+
+    else:
+        form = UserCreationForm()
+        args={"form":form}
+    return render(request, 'registration/registration_form.html', {"form": form})
