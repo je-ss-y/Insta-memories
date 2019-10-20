@@ -3,14 +3,13 @@
 {% block content %}
 {{block.super}}
 
-{% for profile in profilepicture %}
-<!--Display  images  -->
+{% for profile in profilepicture %} 
 <div class="container">
     <div class="row">
       <div class="col-md-4">
           <div class="jumbotron" style="background-color: transparent;padding:12px">
               <div class="card"  class="rounded-lg" style="width:500px">
-    <img src="{{profile.image.url}}" class="img-responsive" alt="Image">
+    <img src="{{profile.profilepicture.url}}" class="img-responsive" alt="Image">
     <p>{{profile.user}}</p>
     <p>{{profile.bio}}</p>
   </div>

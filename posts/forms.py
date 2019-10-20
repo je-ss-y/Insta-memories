@@ -28,18 +28,14 @@ class ProfileForm(forms.ModelForm):
         profilepicture= models.ImageField(upload_to='images/', blank=True)
 
 
-# class Sign_upForm(forms.ModelForm):
+# class CommentForm(forms.ModelForm):
 #     class Meta:
-#         # model = Sign_up
-#         exclude = ['editor', 'pub_date']
+#         model = Comment
+#         fields= ('user', 'body')
 #         # widgets = {
 #         #     'tags': forms.CheckboxSelectMultiple(),
 #         # }
-#         # user = models.OneToOneField(User,on_delete=models.CASCADE)
-#         email = models.EmailField()
-#         = models.EmailField()
-#         email = models.EmailField()
-#         email = models.EmailField()
+
 
 
        
