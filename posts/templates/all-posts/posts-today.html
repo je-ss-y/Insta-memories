@@ -5,18 +5,19 @@
 
 {% for image_item in image %}
 <!--Display  images  -->
+<div class="jumbotron" style="background-color: transparent;padding:20px">
 <div class="card" style="width:500px">
   <p>{{image_item.user}}</p>
-    <img src="{{image_item.image.url}}"  class="card-img-top" alt="Image">
-    <div class="card-body">
-        <p>{{image_item.photoname}}</p>
+  <img src="{{image_item.image.url}}" class="card-img-top" alt="Image">
+  <div class="card-body">
+    <p>{{image_item.photoname}}</p>
     <p>{{image_item.caption}}</p>
-   
-   
+
+
     <p>{{image_item.pub_date|timesince}} ago </p>
   </div>
-  </div>
-
+</div>
+</div>
 
 
 
