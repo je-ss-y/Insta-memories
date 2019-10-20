@@ -78,7 +78,7 @@ def search_results(request):
         searched_users= Image.search_by_user(search_term)
         message = f"{search_term}"
 
-        return render(request, 'all-posts/search.html',{"user": searched_users})
+        return render(request, 'all-posts/search.html',{"profile": searched_users})
 
     else:
         message = "You haven't searched for any term"
