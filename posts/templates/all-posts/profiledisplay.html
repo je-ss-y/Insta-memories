@@ -1,0 +1,17 @@
+{%extends 'all-posts/base.html'%}
+
+{% block content %}
+{{block.super}}
+
+{% for image_item in image %}
+<!--Display  images  -->
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <img src="{{image_item.image.url}}" class="img-responsive" alt="Image">
+    <p>{{image_item.user}}</p>
+    <p>{{image_item.bio}}</p>
+  </div>
+
+</div>
+
+{%endfor%}
+{% endblock %}

@@ -17,11 +17,16 @@ class Image(models.Model):
 
     def __str__(self):
         return self.photoname
+
+    @classmethod
+    def search_by_name(cls,search_term):
+        user = cls.objects.filter(user__contains=search_term)
+        return user
     
 
 class Profile(models.Model):
 
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     bio = models.TextField()
     profilepicture= models.ImageField(upload_to='images/', blank=True)
 
