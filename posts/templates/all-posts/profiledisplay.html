@@ -4,18 +4,27 @@
 {{block.super}}
 
 <div class="container">
+  <div class="jumbotron" style="background-color: transparent;padding:12px">
     <div class="row">
       <div class="col-md-4">
-          <div class="jumbotron" style="background-color: transparent;padding:12px">
-              <div class="card"  class="rounded-lg" style="width:500px">
-    <img src="{{profilepicture.profilepicture.url}}" class="img-responsive" alt="Image">
-    <p>{{profilepicture.user}}</p>
-    <p>{{profilepicture.bio}}</p>
+        <img src="{{profilepicture.profilepicture.url}}" class="rounded-circle" alt="Image" style="width:300px">
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <p>{{profilepicture.user}}</p>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <p>{{profilepicture.bio}}</p>
+    </div>
   </div>
 </div>
-</div>
-</div>
-</div>
+
 
 
 
