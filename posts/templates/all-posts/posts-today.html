@@ -21,17 +21,21 @@
     <p>{{image_item.caption}}</p>
     <p>{{image_item.pub_date|timesince}} ago </p>
     <hr>
-    {% for comment in comments %}
-      {{comment.comment}}
-          
-      
 
+<a href =" {% url 'comment' image_item.id%}">comment</a><br>
+    {% for comment in image_item.comment_set.all %}
+    
+      {{comment.comment}}
+    {%empty%}
+      
+    <p>no comments yet</p>
   {%endfor%}
-  <p>boooooooo</p>
+  
 
   
   </div>
 </div>
+
 </div>
 </div>
   
@@ -39,7 +43,7 @@
 </div>
 
 
-<a href =" {% url 'comment' image_item.id%}">comment</a>
+
 
 </div>
 
