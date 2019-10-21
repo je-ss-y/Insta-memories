@@ -79,10 +79,11 @@ def profile_form(request):
 @login_required(login_url='/accounts/login/')
 def user_profile(request):
     current_user = request.user
+    images = Image.objects.filter(user=current_user)
     profilepicture=Profile.objects.get(user=current_user)
    
  
-    return render(request, 'all-posts/profiledisplay.html', {"profilepicture": profilepicture})
+    return render(request, 'all-posts/profiledisplay.html', {"profilepicture": profilepicture,"images":images})
 
 
 

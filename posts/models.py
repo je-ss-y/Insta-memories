@@ -19,7 +19,7 @@ class Image(models.Model):
 
 
     def __str__(self):
-        return self.photoname
+        return self.image
 
     @classmethod
     def search_by_name(cls,search_term):
