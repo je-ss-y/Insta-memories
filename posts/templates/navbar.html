@@ -39,10 +39,12 @@
                 <a class="dropdown-item"  href="{%url 'new-post'%}">Create Post</a>
             
              
-                <a class="dropdown-item" href="{%url 'profile'%}">Profile</a>
+                <a class="dropdown-item" href="{%url 'profiledisplay'%}">Profile</a>
             
              
                 <a class="dropdown-item" href="/accounts/password/change">Change Password</a>
+
+                <a class="dropdown-item" href="{%url 'profile'%}">Sign-up</a>
               
            
                 <a class="dropdown-item" href="/logout">Logout</a>
@@ -64,7 +66,7 @@
             <form class="navbar-form" role="search" action="{% url 'search_results' %}">
     
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search profile" name="search_results">
+                <input type="text" class="form-control" placeholder="Search profile" name="username">
                 <div class="input-group-btn">
                   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>

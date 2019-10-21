@@ -12,6 +12,7 @@ urlpatterns=[
     url(r'^accounts/profileform', views.profile_form, name='profile'),
     url(r'^accounts/profiledisplay', views. user_profile, name='profiledisplay'),
     url(r'^search/', views.search_results, name='search_results'),
+    url(r'^comment/(?P<image_id>\d+)$', views.commenting, name='comment'),
     # url(r'^register/',views.search_results, name='search_results')
 ]
 

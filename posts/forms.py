@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Image,Profile
+from .models import Image,Profile,Comment
 from django import forms
 from django.contrib.auth.models import User
 
@@ -28,13 +28,11 @@ class ProfileForm(forms.ModelForm):
         profilepicture= models.ImageField(upload_to='images/', blank=True)
 
 
-# class CommentForm(forms.ModelForm):
-#     class Meta:
-#         model = Comment
-#         fields= ('user', 'body')
-#         # widgets = {
-#         #     'tags': forms.CheckboxSelectMultiple(),
-#         # }
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+      
 
 
 

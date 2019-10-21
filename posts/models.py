@@ -12,6 +12,8 @@ class Image(models.Model):
     # upvote = models.ManyToManyField(User)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
+    
+    # profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
 
     # tags = models.ManyToManyField(tags)
 
@@ -21,8 +23,13 @@ class Image(models.Model):
 
     @classmethod
     def search_by_name(cls,search_term):
-        user = cls.objects.filter(user__contains=search_term)
+        user = cls.objects.filter(user__username__contains=search_term)
         return user
+    
+    @classmethod
+    def get_image(cls):
+        image= cls.objects.all().prefetch_related('comment_set')
+        return image
     
 
 class Profile(models.Model):
@@ -38,14 +45,14 @@ class Profile(models.Model):
 
 
 
-# class Comment(models.Model):
-#     comment = models.TextField()
-#     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-#     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+class Comment(models.Model):
+    comment = models.TextField()
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-#     def __str__(self):
-#         return f'{self.user.name} Image'
+    def __str__(self):
+        return self.comment
 
 
 

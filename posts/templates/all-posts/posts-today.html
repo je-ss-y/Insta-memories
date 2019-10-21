@@ -3,7 +3,7 @@
 {% block content %}
 {{block.super}}
 
-{% for image_item in image %}
+{% for image_item in images %}
 <!--Display  images  -->
 <div class="container">
   <div class="row">
@@ -11,19 +11,36 @@
 <div class="jumbotron" style="background-color: transparent;padding:12px">
 <div class="card"  class="rounded-lg" style="width:500px">
   <p>{{image_item.user}}</p>
+  {% for profile in profilepicture %} 
+  <img src="{{profile.profilepicture.url}}" class="img-responsive" alt="Image">
+  {%endfor%}
   <img src="{{image_item.image.url}}" class="card-img-top" alt="Image">
   <div class="card-body">
 
     <p>{{image_item.photoname}}</p>
     <p>{{image_item.caption}}</p>
-
-
     <p>{{image_item.pub_date|timesince}} ago </p>
+    <hr>
+    {% for comment in comments %}
+      {{comment.comment}}
+          
+      
+
+  {%endfor%}
+  <p>boooooooo</p>
+
+  
   </div>
 </div>
 </div>
 </div>
+  
+
 </div>
+
+
+<a href =" {% url 'comment' image_item.id%}">comment</a>
+
 </div>
 
 

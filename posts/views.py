@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
-from .models import Image,Profile
+from .models import Image,Profile,Comment
 from django.contrib.auth.decorators import login_required
-from .forms import NewImageForm,ProfileForm
+from .forms import NewImageForm,ProfileForm,CommentForm
 from django.contrib.auth.forms import UserCreationForm
+from registration.backends.simple.views import RegistrationView
+from django.contrib.auth.models import User
+
 
 @login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -23,9 +26,19 @@ def new_post(request):
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def posts_of_day(request):
+    current_user = request.user
     date = dt.date.today()
-    image = Image.objects.all()
-    return render(request, 'all-posts/posts-today.html', {"date": date,"image": image})
+    images = Image.get_image()
+    comment = Comment.objects.all()
+
+    for image in images:
+        comments = Comment.objects.filter(image=image)
+        print(comments)
+
+
+    # comment = Comment.objects.filter(id = current_user.id).first()
+    # print(comment)
+    return render(request, 'all-posts/posts-today.html', {"date": date,"images": images, 'comments':comments})
 
 
 
@@ -65,35 +78,57 @@ def profile_form(request):
 
 @login_required(login_url='/accounts/login/')
 def user_profile(request):
-    profilepicture=Profile.objects.all()
-    args={"profilepicture":profilepicture}
+    current_user = request.user
+    profilepicture=Profile.objects.get(user=current_user)
+   
+ 
     return render(request, 'all-posts/profiledisplay.html', {"profilepicture": profilepicture})
 
 
 
 def search_results(request):
 
-    if 'user' in request.GET and request.GET["user"]:
-        search_term = request.GET.get("user")
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
         searched_users= Image.search_by_user(search_term)
         message = f"{search_term}"
 
-        return render(request, 'all-posts/search.html',{"profile": searched_users})
+        return render(request, 'all-posts/search.html',{"user": searched_users})
 
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-posts/search.html',{"message":message})
 
 
-def register(request):
+# def register(request):
     
+#     if request.method == 'POST':
+#         form =  UserCreationForm(request.POST)
+#         if form.is_valid():
+#            form.save()
+#         return redirect('profiledisplay')
+
+#     else:
+#         form = UserCreationForm()
+#         args={"form":form}
+#     return render(request, 'registration/registration_form.html', {"form": form})
+
+
+@login_required(login_url='/accounts/login/')
+def commenting(request,image_id):
+    current_user = request.user
     if request.method == 'POST':
-        form =  UserCreationForm(request.POST)
+        imagetocomment = Image.objects.filter(id = image_id).first()
+        # user = User.objects.filter(user = current_user.id).first()
+        # print(user)
+        form =  CommentForm(request.POST, request.FILES)
         if form.is_valid():
-           form.save()
-        return redirect('all-posts/posts-today')
+            comment = form.save(commit=False)
+            comment.user= current_user
+            comment.image =imagetocomment
+            comment.save()
+        return redirect('postsToday')
 
     else:
-        form = UserCreationForm()
-        args={"form":form}
-    return render(request, 'registration/registration_form.html', {"form": form})
+        form = CommentForm()
+    return render(request, 'all-posts/comment-form.html', {"form": form, 'image_id':image_id})
