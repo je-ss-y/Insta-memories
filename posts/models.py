@@ -21,6 +21,12 @@ class Image(models.Model):
     def __str__(self):
         return self.image
 
+    def save_image(self):
+        self.user
+
+    def delete_image(self):
+        self.delete()
+
     @classmethod
     def search_by_name(cls,search_term):
         searched_user = cls.objects.filter(user__username__contains=search_term)
@@ -41,6 +47,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.profilepicture
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
 
 
 

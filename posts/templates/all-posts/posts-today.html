@@ -25,7 +25,7 @@
 <a href =" {% url 'comment' image_item.id%}">comment</a><br>
     {% for comment in image_item.comment_set.all %}
     
-      {{comment.comment}}
+      <p>{{comment.comment}}</p>
     {%empty%}
       
     <p>no comments yet</p>
