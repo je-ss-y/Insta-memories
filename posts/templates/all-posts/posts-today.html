@@ -8,39 +8,41 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-<div class="jumbotron" style="background-color: transparent;padding:12px">
-<div class="card"  class="rounded-lg" style="width:500px">
-  <p>{{image_item.user}}</p>
-  {% for profile in profilepicture %} 
-  <img src="{{profile.profilepicture.url}}" class="img-responsive" alt="Image">
-  {%endfor%}
-  <img src="{{image_item.image.url}}" class="card-img-top" alt="Image">
-  <div class="card-body">
+      <div class="jumbotron" style="background-color: transparent;padding:12px">
+        <div class="card" class="rounded-lg" style="width:500px">
+          <p>{{image_item.user}}</p>
+          {% for profile in profilepicture %}
+          <img src="{{profile.profilepicture.url}}" class="img-responsive" alt="Image">
+          {%endfor%}
+          <img src="{{image_item.image.url}}" class="card-img-top" alt="Image">
+          <div class="card-body">
 
-    <p>{{image_item.photoname}}</p>
-    <p>{{image_item.caption}}</p>
-    <p>{{image_item.pub_date|timesince}} ago </p>
-    <hr>
+            <p>{{image_item.photoname}}</p>
+            <p>{{image_item.caption}}</p>
+            <p>{{image_item.pub_date|timesince}} ago </p>
+            <hr>
 
-<a href =" {% url 'comment' image_item.id%}">comment</a><br>
-    {% for comment in image_item.comment_set.all %}
-    
-      <p>{{comment.comment}}</p>
-    {%empty%}
-      
-    <p>no comments yet</p>
-  {%endfor%}
-  
+            <a href=" {% url 'comment' image_item.id%}" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-comment"><span>Comment<br>
+            </a>
+            {%  for comment in image_item.comment_set.all %}
 
-  
+            <p>{{comment.comment}}</p>
+            {%empty%}
+
+            <p>no comments yet</p>
+            {%endfor%}
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
   </div>
-</div>
-
-</div>
-</div>
-  
-
-</div>
 
 
 

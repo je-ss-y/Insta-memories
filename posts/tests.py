@@ -1,57 +1,45 @@
 from django.test import TestCase
-from .models import Profile, Image
+from .models import Image,Profile,Comment
 from django.contrib.auth.models import User
-class TestProfile(TestCase):
-   def setUp(self):
-       self.user = User(username='eve')
-       self.user.save()
-       self.profile_test = Profile( profile_picture='insta.jpg', bio='this is a test profile', user=self.user)
-   def test_instance(self):
-       self.assertTrue(isinstance(self.profile_test, Profile))
-   def test_save_profile(self):
-       self.profile_test.save_profile()
-       travel = Profile.objects.all()
-   def tearDown(self):
-       '''
-       Test delete category behaivour
-       '''
-       Profile.objects.all().delete()
-   def test_delete_profile(self):
-       '''
-       Test if category can be deleted from db.
-       '''
-       self.save_profile()
-       self.profile = Profile.objects.get(id = 1)
-       self.profile.delete_profile()
-       self.assertTrue(len(Profile.objects.all()) == 0)
-class TestImage(TestCase):
-   def setUp(self):
-       self.profile_test = Profile()
-       self.profile_test.save()
-       self.image_test = Image(image='insta.png', image_name='test', caption='default test', profile=self.profile_test)
-   def test_instance(self):
-       self.assertTrue(isinstance(self.image_test, Post))
-   def test_save_image(self):
-       self.image_test.save_image()
-       images = Post.objects.all()
-       self.assertTrue(len(images) > 0)
-   def tearDown(self):
-       '''
-       Test delete category behaivour
-       '''
-       Image.objects.all().delete()
-   def test_delete_image(self):
-       '''
-       Test if category can be deleted from db.
-       '''
-       self.images.save_image()
-       self.image = Image.objects.get(id = 1)
-       self.image.delete_image()
-       self.assertTrue(len(Image.objects.all()) == 0)
+
+# Create your tests here.
+
+class ImageTestClass(TestCase):
+# set up method
+    def setUp(self):
+
+        self.user=User.objects.create(username='jessy')
+        # self.profile=Profile.objects.create(id=1,user=jessica,bio=creating,profile_photo="")
+        self.image=Image(image='https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/bolzano-lead.jpg?itok=SsNNvkdk',photoname='person',caption='hello', pub_date='2019-9-2')
+
+ #testing instance 
+    def test_instance(self):
+        self.assertTrue(isinstance(self.image.Image))
+        # self.assertTrue(isinstance(self.profile.Profile))
+        self.assertTrue(isinstance(self.user.User))
 
 
+    def save_instance(self):
+        self.image.save_image()
+        images=Image.objects.all()
+        self .assertTrue(len(images)>0)
+
+class ProfileClass(TestCase):
+# set up method
+    def setUp(self):
+
+        self.profile=Profile.objects.create(id=1,user=jessica,bio=creating,profile_photo="https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/bolzano-lead.jpg?itok=SsNNvkdk")
+        
+
+ #testing instance 
+    def test_instance(self):
+       
+        self.assertTrue(isinstance(self.profile.Profile))
+     
 
 
-
-
+    def save_instance(self):
+        self.image.save_image()
+        images=Image.objects.all()
+        self .assertTrue(len(images)>0)
 
