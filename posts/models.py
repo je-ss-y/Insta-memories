@@ -23,8 +23,8 @@ class Image(models.Model):
 
     @classmethod
     def search_by_name(cls,search_term):
-        user = cls.objects.filter(user__username__contains=search_term)
-        return user
+        searched_user = cls.objects.filter(user__username__contains=search_term)
+        return  searched_user
     
     @classmethod
     def get_image(cls):

@@ -2,24 +2,33 @@
 
 {% block content %}
 {{block.super}}
+<!-- <style>
+#profile{ 
+  width:150px;
+  height:150px;
+  border-radius: 2px
+
+}
+</style> -->
 
 <div class="container">
-  <div class="jumbotron" style="background-color: transparent;padding:12px">
+  
     <div class="row">
-      <div class="col-md-4">
-        <img src="{{profilepicture.profilepicture.url}}" class="rounded-circle" alt="Image" style="width:150px">
+      
+      <div class="col-md-4" id="profile">
+        <img src="{{profilepicture.profilepicture.url}}" class="circle" alt="Image" style="height:200px; width:200px;  border-radius: 50% ">
 
 
       </div>
 
 
       <div class="col-md-4">
-        <h3>{{profilepicture.user}}</h3>
+        <span><h3>{{profilepicture.user}}</h3></span>
 
       </div>
 
       <div class="col-md-4">
-        <h4>Bio:{{profilepicture.bio}}</h4>
+        <h4>{{profilepicture.bio}}</h4>
       </div>
     </div>
 
@@ -27,11 +36,16 @@
   </div>
 </div>
 
-
+<br>
+<br>
+<br>
+<br>
+<div class = "jumbotron" style="background-color: transparent">
 {% for pro in images %}
-<img src="{{pro.image.url}}" class="rounded-lg" alt="Image" style="width:300px">
+<img src="{{pro.image.url}}" class="rounded-lg" alt="Image" style="width:400px;height:300px">
 
 
 
 {% endfor %}
+</div>
 {% endblock %}
